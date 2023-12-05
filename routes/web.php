@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +28,22 @@ Route::get('/todoravel', function () {
     return view('todoravel');
 })->middleware(['auth', 'verified'])->name('todoravel');
 
+Route::get('/tasks/index.blade.php', [TaskController::class, 'index']);
+Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.delete');
+Route::delete('/tasks/{id}', [TaskController::class, 'delete'])->name('tasks.delete');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
+
+
 
 require __DIR__ . '/auth.php';

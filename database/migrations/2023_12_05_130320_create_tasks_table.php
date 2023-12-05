@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained(); // Add this line for foreign key
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->default(null);
             $table->text('description');
             $table->boolean('isDone')->default(false);
             $table->timestamps();
