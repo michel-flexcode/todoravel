@@ -26,6 +26,15 @@
                 <div>
                     <strong>Status:</strong> {{ $task->isDone ? 'Completed' : 'Incomplete' }}
                 </div>
+
+                <div>
+                    <form method="POST" action="{{ route('tasks.delete', ['task' => $task->id]) }}"
+                        style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
             </li>
         @endforeach
     </ul>

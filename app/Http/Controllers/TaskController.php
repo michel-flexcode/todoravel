@@ -46,11 +46,26 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function destroy(Request $request, $id)
     {
         $task = Task::find($id);
         $task->delete();
     }
+
+    public function onoff(Request $request, $id)
+    {
+        $task = Task::find($id);
+
+        // Check if the task is not null before calling isDone
+        if ($task) {
+            // Toggle the isDone value
+            $task->update(['isDone' => !$task->isDone]);
+        }
+
+        return redirect()->route('tasks.index'); // Adjust the route accordingly
+    }
+
+
 
     /**
      * Store a newly created resource in storage.

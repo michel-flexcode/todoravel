@@ -28,11 +28,15 @@ Route::get('/todoravel', function () {
     return view('todoravel');
 })->middleware(['auth', 'verified'])->name('todoravel');
 
+
 Route::get('/tasks/index.blade.php', [TaskController::class, 'index']);
 Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
-Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.delete');
-Route::delete('/tasks/{id}', [TaskController::class, 'delete'])->name('tasks.delete');
+Route::delete('/tasks/index.blade.php/{id}', [TaskController::class, 'delete'])->name('tasks.delete');
+
+Route::delete('/tasks/task/{id}', [TaskController::class, 'destroy'])->name('tasks.delete');
+Route::post('/tasks/task/{id}', [TaskController::class, 'onoff'])->name('tasks.onoff');
+
 
 
 Route::middleware('auth')->group(function () {

@@ -47,14 +47,16 @@
                 </div>
                 <div>
                     <strong>Status:</strong> {{ $task->isDone ? 'Completed' : 'Incomplete' }}
+                    <form action="{{ route('tasks.onoff', ['id' => $task->id]) }}" method="post">
+                        @csrf
+                        <input type="checkbox" name="isDone" {{ $task->isDone ? 'checked' : '' }}
+                            onchange="this.form.submit()" />
+                    </form>
                 </div>
                 <form action="{{ route('tasks.delete', ['id' => $task->id]) }}" method="post">
                     @csrf
                     @method('delete')
-
-                    <div>
-                        <button type="submit">Delete</button>
-                    </div>
+                    <button type="submit">Delete Task</button>
                 </form>
             </li>
         @endforeach
