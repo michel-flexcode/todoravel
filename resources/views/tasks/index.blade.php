@@ -53,11 +53,34 @@
                             onchange="this.form.submit()" />
                     </form>
                 </div>
-                <form action="{{ route('tasks.delete', ['id' => $task->id]) }}" method="post">
-                    @csrf
-                    @method('delete')
-                    <button type="submit">Delete Task</button>
-                </form>
+                <button type="button" class="btn btn-danger" data-toggle="modal"
+                    data-target="#deleteModal{{ $task->id }}">
+                    Delete Task
+                </button>
+
+                <!-- Modal for Delete Task -->
+                <div id="deleteModal{{ $task->id }}" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this task?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <form action="{{ route('tasks.delete', ['id' => $task->id]) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </li>
         @endforeach
     </ul>
