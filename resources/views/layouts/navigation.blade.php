@@ -17,18 +17,20 @@
                     </x-nav-link>
                 </div>
 
-                <!-- language Links -->
+                <!-- Navigation Languages -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('french')">
+                    <x-nav-link :href="route('lang.switch', 'fr')" :active="app()->getLocale() == 'fr'">
                         {{ __('language french') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('english')">
+                    <x-nav-link :href="route('lang.switch', 'en')" :active="app()->getLocale() == 'en'">
                         {{ __('language english') }}
                     </x-nav-link>
                 </div>
+
+
             </div>
 
             <!-- Settings Dropdown -->

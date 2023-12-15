@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Langapp;
 
 
 /*
@@ -35,8 +36,7 @@ Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
 Route::delete('/tasks/index.blade.php/{id}', [TaskController::class, 'delete'])->name('tasks.delete');
 
 // route des langues
-Route::get('/lang/{lang}', [TaskController::class, 'langapp']);
-
+Route::get('/lang/{lang}', [Langapp::class, 'langapp'])->name('lang.switch');
 
 Route::delete('/tasks/task/{id}', [TaskController::class, 'destroy'])->name('tasks.delete');
 Route::post('/tasks/task/{id}', [TaskController::class, 'onoff'])->name('tasks.onoff');
