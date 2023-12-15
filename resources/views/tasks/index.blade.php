@@ -53,13 +53,13 @@
                             onchange="this.form.submit()" />
                     </form>
                 </div>
-                <button type="button" class="btn btn-danger" data-toggle="modal"
-                    data-target="#deleteModal{{ $task->id }}">
+
+                <button type="button" class="btn btn-danger" onclick="showDeleteModal({{ $task->id }})">
                     Delete Task
                 </button>
 
-                <!-- Modal for Delete Task -->
-                <div id="deleteModal{{ $task->id }}" class="modal" tabindex="-1" role="dialog">
+
+                <div id="deleteModal" class="modal invisible" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -72,7 +72,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <form action="{{ route('tasks.delete', ['id' => $task->id]) }}" method="post">
+                                <form action="{{ route('tasks.delete', ['id' => 0]) }}" method="post" id="form-delete">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -80,8 +80,26 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </li>
         @endforeach
     </ul>
 </x-app-layout>
+
+<script>
+    const modal = document.getElementById('deleteModal');
+    let taskId = 0;
+    let form = document.getElementById("form-delete");
+    console.log(form);
+
+    function showDeleteModal(taskModalId) {
+        // Show the modal
+        taskId = taskModalId;
+        let action = form.action;
+        modal.classList.toggle("invisible");
+    }
+    // Attach a click event to the cancel button in the modal to hide it
+    const cancelButton = modal.querySelector('.btn-secondary');
+    cancelButton.addEventListener('click', function() {
+        modal.classList.toggle("invisible");
+    });
+</script>

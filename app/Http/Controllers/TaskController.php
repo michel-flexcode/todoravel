@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use Illuminate\Support\Facades\Gate;
 
 class TaskController extends Controller
 {
@@ -49,6 +50,7 @@ class TaskController extends Controller
     public function destroy(Request $request, $id)
     {
         $task = Task::find($id);
+        Gate::authorize('delete', $task);
         $task->delete();
     }
 
