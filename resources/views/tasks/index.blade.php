@@ -16,21 +16,21 @@
     </div>
 
     <div>
-        <h2>Create a New Task</h2>
+        <h2>{{ __('app.create_task') }}</h2>
 
         <form action="{{ route('tasks.store') }}" method="post">
             @csrf
 
             <div>
-                <label for="description">Description:</label>
+                <label for="description">{{ __('app.description') }}</label>
                 <input type="text" name="description" id="description" required>
             </div>
 
             <div>
-                <label for="isDone">Status:</label>
+                <label for="isDone">{{ __('app.status') }}</label>
                 <select name="isDone" id="isDone" required>
-                    <option value="0">Incomplete</option>
-                    <option value="1">Completed</option>
+                    <option value="0">{{ __('app.Incomplete') }}</option>
+                    <option value="1">{{ __('app.Completed') }}</option>
                 </select>
             </div>
 
@@ -72,7 +72,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <form action="{{ route('tasks.delete', ['id' => 0]) }}" method="post" id="form-delete">
+                                <form action="{{ route('tasks.delete', ['id' => 0]) }}" method="post"
+                                    id="form-delete">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger">Delete</button>
