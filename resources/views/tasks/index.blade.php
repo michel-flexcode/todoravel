@@ -34,11 +34,11 @@
                 </select>
             </div>
 
-            <button type="submit">Create Task</button>
+            <button type="submit">{{ __('app.create_a_task') }}</button>
         </form>
     </div>
 
-    <h2>Tasks for {{ Auth::user()->name }}</h2>
+    <h2>{{ __('app.task_for') }} {{ Auth::user()->name }}</h2>
     <ul>
         @foreach (Auth::user()->tasks as $task)
             <li>

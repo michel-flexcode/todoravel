@@ -15,6 +15,8 @@ return [
 
     'create_task' => 'Create a New Task',
     'description' => 'Description :',
+    'create_a_task' => 'Create Task',
+    'task_for' => 'Task for :',
     'status' => 'Status :',
     'Incomplete' => 'Incomplete',
     'Completed' => 'Completed',

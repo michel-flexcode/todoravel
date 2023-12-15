@@ -16,8 +16,10 @@ return [
     'create_task' => 'Crée une nouvelle tâche',
     'description' => 'Description :',
     'status' => 'Statut :',
+    'task_for' => 'Tâche de :',
     'Incomplete' => 'Incomplet',
     'Completed' => 'Complet',
+    'create_a_task' => 'Crée une tâche',
     'next' => 'Next &raquo;',
 
 ];
