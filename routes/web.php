@@ -34,6 +34,10 @@ Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
 Route::delete('/tasks/index.blade.php/{id}', [TaskController::class, 'delete'])->name('tasks.delete');
 
+// route des langues
+Route::get('/lang/{lang}', [TaskController::class, 'langapp']);
+
+
 Route::delete('/tasks/task/{id}', [TaskController::class, 'destroy'])->name('tasks.delete');
 Route::post('/tasks/task/{id}', [TaskController::class, 'onoff'])->name('tasks.onoff');
 
