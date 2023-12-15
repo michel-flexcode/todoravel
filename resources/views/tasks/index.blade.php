@@ -95,6 +95,11 @@
         // Show the modal
         taskId = taskModalId;
         let action = form.action;
+
+        let urlParts = action.split('/');
+        let lastPart = urlParts[urlParts.length - 1];
+        form.action = action.replace(lastPart, taskId);
+
         modal.classList.toggle("invisible");
     }
     // Attach a click event to the cancel button in the modal to hide it
